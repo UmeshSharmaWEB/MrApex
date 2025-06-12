@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>UmeshMC</title>
+<style>
+body {
+  margin: 0; padding: 0; height: 100%;
+  background: linear-gradient(to bottom right, #1a0033, #4b0082);
+  font-family: Orbitron, sans-serif;
+  color: white; display: flex; align-items: center; justify-content: center;
+  text-align: center; cursor: pointer;
+}
+</style>
+</head>
+<body onclick="window.location.href='home.html'">
+<h1>🔥 Welcome to UmeshMC 🔥<br><small>Click anywhere to enter</small></h1>
+
+<!-- Minecraft Server Status Start -->
+<div id="server-status" style="margin: 20px; padding: 10px; background: #222; color: #0f0; font-family: monospace;"></div>
+<a href="minecraft://51.89.81.29:25565" style="display: inline-block; margin: 10px; padding: 10px 15px; background: purple; color: white; text-decoration: none; border-radius: 5px;">🎮 Connect to Server</a>
+<script>
+fetch("https://api.mcsrvstat.us/2/51.89.81.29")
+  .then(response => response.json())
+  .then(data => {
+    if (data.online) {
+      document.getElementById("server-status").innerHTML = `✅ Server Online<br>🌐 IP: 51.89.81.29<br>👥 Players: ${data.players.online} / ${data.players.max}`;
+    } else {
+      document.getElementById("server-status").innerHTML = "❌ Server is Offline";
+    }
+  });
+</script>
+<!-- Minecraft Server Status End -->
+
+</body></html>
