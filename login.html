@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="UTF-8"><title>Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+<style>
+body { background: linear-gradient(to bottom, #2a003f, #4d0066); font-family: Orbitron, sans-serif; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; }
+form { background: rgba(0,0,0,0.6); padding: 30px; border-radius: 12px; width: 300px; }
+input, button { width: 100%; padding: 10px; margin: 10px 0; border: none; border-radius: 8px; }
+button { background: #8000ff; color: white; cursor: pointer; }
+</style>
+</head>
+<body>
+<form onsubmit="login(event)">
+<h2>Login</h2>
+<input type="text" id="username" placeholder="Username" required />
+<input type="password" id="password" placeholder="Password" required />
+<button type="submit">Login</button>
+<p id="msg" style="color:red;"></p>
+</form>
+<script>
+function login(e) {
+e.preventDefault();
+let u = document.getElementById("username").value;
+let p = document.getElementById("password").value;
+let su = localStorage.getItem("account_username");
+let sp = localStorage.getItem("account_password");
+if (u === su && p === sp) {
+  localStorage.setItem("loggedIn", "true");
+  location.href = "home.html";
+} else {
+  document.getElementById("msg").textContent = "❌ Invalid Login";
+}
+}
+</script>
+</body></html>
